@@ -15,7 +15,11 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
+<<<<<<< HEAD
 npx sv create --template minimal --types ts --install npm svelte-5
+=======
+npx sv create --template minimal --no-types --add prettier eslint tailwindcss="plugins:typography,forms" drizzle="database:postgresql+postgresql:postgres.js+docker:no" --install npm builder
+>>>>>>> 2595c99ae03e8f14e0e35937dfbbaa6a235516fb
 ```
 
 ## Developing
