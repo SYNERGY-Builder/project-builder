@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <script lang="ts">
   import { form } from '$app/server';
     import Header from './Header.svelte';
@@ -57,7 +57,7 @@
 
  
 
-=======
+
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
->>>>>>> 2595c99ae03e8f14e0e35937dfbbaa6a235516fb
+
