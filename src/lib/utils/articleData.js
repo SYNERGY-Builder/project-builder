@@ -1,0 +1,121 @@
+export const article = {
+    "journal": {
+        "title": "Journal of Example Studies",
+        "issn": "1234-5678",
+        "publisher": "Example Publisher",
+        "volume": 1,
+        "issue": 1,
+        "year": 2026
+    },
+    "article": {
+        "metadata": {
+            "title": "Example Article Title",
+            "doi": "10.1234/example.doi",
+            "authors": [
+                {
+                    "name": "Jane Doe",
+                    "affiliation": "Department of Examples, Example University",
+                    "email": "jane.doe@example.com",
+                    "corresponding": true
+                },
+                {
+                    "name": "John Smith",
+                    "affiliation": "Institute of Testing, Example Research Center",
+                    "email": "john.smith@example.com",
+                    "corresponding": false
+                }
+            ],
+            "keywords": [
+                "example",
+                "sample",
+                "test"
+            ],
+            "abstract": [
+                {
+                    "p": "This is the abstract summarizing the article's purpose, methods, and key findings."
+                },
+                {
+                    "p": "This is the abstract summarizing the article's purpose, methods, and key findings."
+                },
+                {
+                    "p": "This is the abstract summarizing the article's purpose, methods, and key findings."
+                }
+            ]
+        },
+        "content": [
+            {
+                "heading": "introduction",
+                "body": [
+                    {
+                        "p": "The introduction provides background information."
+                    },
+                    {
+                        "p": "It explains the research questions."
+                    },
+                    {
+                        "p": "It also outlines the objectives."
+                    }
+                ]
+            },
+            {
+                "heading": "methods",
+                "body": [
+                    {
+                        "p": "This section describes the methodology."
+                    },
+                    {
+                        "p": "It includes study design and materials."
+                    }
+                ]
+            },
+            {
+                "heading": "results_and_discussion",
+                "body": [
+                    {
+                        "p": "This section presents the results."
+                    },
+                    {
+                        "p": "It discusses their implications."
+                    }
+                ]
+            },
+            {
+                "heading": "conclusion",
+                "body": [
+                    {
+                        "p": "The conclusion summarizes findings."
+                    },
+                    {
+                        "p": "It suggests future research directions."
+                    }
+                ]
+            }
+        ],
+        "back": [
+            {
+                "heading": "acknowledgment",
+                "body": [
+                    {
+                        "p": "We acknowledge the contributions of all supporting staff and funding agencies."
+                    },
+                    {
+                        "p": "We acknowledge the contributions of all supporting staff and funding agencies."
+                    }
+                ]
+            },
+            {
+                "heading": "references",
+                "body": [
+                    {
+                        "id": 1,
+                        "citation": "Doe J, Smith J. Example study on testing. Journal of Example Studies. 2026;1(1):1-10. doi:10.1234/example.doi"
+                    },
+                    {
+                        "id": 2,
+                        "citation": "Another Author. Another reference example. Example Journal. 2025;12(4):123-130."
+                    }
+                ]
+            }
+        ]
+    }
+}
