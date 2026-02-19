@@ -1,3 +1,27 @@
+import { dashUnderscoreNormalize } from "$lib/utils/helper";
+
+export function articleContentComponents(data) {
+    return [
+        data.map((sec) => ({
+            tagName: 'section',
+            name: `${dashUnderscoreNormalize(sec.heading)} Section`,
+            components: [
+                {
+                    tagName: 'h1',
+                    name: `${dashUnderscoreNormalize(sec.heading)}`,
+                    content: `${dashUnderscoreNormalize(sec.heading)}`
+                },
+                sec.body.map((p) => ({
+                    tagName: 'p',
+                    name: `${dashUnderscoreNormalize(sec.heading)} Content Paragraf`,
+                    content: p.p
+                }))
+            ]
+        }))
+    ]
+}
+
+// Block
 export function articleContentDataBlock(editor, data) {
     editor.BlockManager.add('article-content', {
         label: 'all article content',
@@ -7,24 +31,7 @@ export function articleContentDataBlock(editor, data) {
             attributes: {
                 class: 'article-content'
             },
-            components: [
-                ...(data.map((sec) => ({
-                    tagName: 'section',
-                    attributes: {
-                        class: `${sec.heading}-section`
-                    },
-                    components: [
-                        {
-                            tagName: 'h1',
-                            content: sec.heading.replace(/[-_]+/g, ' ')
-                        },
-                        ...sec.body.map((p) => ({
-                            tagName: 'p',
-                            content: p.p
-                        }))
-                    ]
-                })))
-            ]
+            components: articleContentComponents(data)
         }
     })
 }

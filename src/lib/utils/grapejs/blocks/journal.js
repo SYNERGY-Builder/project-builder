@@ -1,3 +1,29 @@
+export const journalComponents = (data) => {
+    return [
+        {
+            tagName: 'h1',
+            name: 'journal title',
+            content: `Journal: ${data.title}`
+        },
+        {
+            tagName: 'p',
+            name: 'ISSN',
+            content: `ISSN: ${data.issn}`
+        },
+        {
+            tagName: 'p',
+            name: 'Publisher',
+            content: `Publisher: ${data.publisher}`
+        },
+        {
+            tagName: 'p',
+            name: 'Journal Publication',
+            content: `Vol ${data.volume} Issue ${data.issue} Year ${data.year}`
+        }
+    ]
+}
+
+// Block
 export function journalDataBlock(editor, data) {
     editor.BlockManager.add('journal-data', {
         label: 'all journal data',
@@ -7,24 +33,7 @@ export function journalDataBlock(editor, data) {
             attributes: {
                 'class': 'journal-section'
             },
-            components: [
-                {
-                    tagName: 'h1',
-                    content: `Journal: ${data.title}`
-                },
-                {
-                    tagName: 'p',
-                    content: `ISSN: ${data.issn}`,
-                },
-                {
-                    tagName: 'p',
-                    content: `Publisher: ${data.publisher}`,
-                },
-                {
-                    tagName: 'p',
-                    content: `Vol ${data.volume} Issue ${data.issue} Year ${data.year}`
-                }
-            ]
+            components: journalComponents(data)
         }
     })
 }

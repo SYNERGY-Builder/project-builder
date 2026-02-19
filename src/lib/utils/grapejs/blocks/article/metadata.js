@@ -1,3 +1,59 @@
+export function articleMetadataComponents(data) {
+    return [
+        {
+            tagName: 'h1',
+            name: 'Article Title',
+            content: data.title
+        },
+        {
+            tagName: 'p',
+            name: 'Article Doi',
+            components: [
+                {
+                    type: 'text',
+                    content: 'DOI: '
+                },
+                {
+                    tagName: 'a',
+                    content: data.doi,
+                    attributes: {
+                        href: `https://doi.org/${data.doi}`,
+                        target: '_blank',
+                        rel: 'noopener noreferrer'
+                    }
+                }
+            ]
+        },
+        {
+            tagName: 'p',
+            name: 'Article Authors',
+            content: `Authors: ${data.authors.map((author) => author.name).join(', ')}`
+        },
+        {
+            tagName: 'p',
+            name: 'Article Keywords',
+            content: `Keywords: ${data.keywords.map((keyword) => keyword).join(', ')}`
+        },
+        {
+            tagName: 'section',
+            name: 'Article Abstract',
+            components: [
+                {
+                    tagName: 'h3',
+                    name: 'Abstract',
+                    content: 'Abstract:'
+                },
+                data.abstract.map((abst) => ({
+                    tagName: 'p',
+                    name: 'Abstract Content',
+                    content: abst.p
+                }))
+            ]
+        }
+    ]
+}
+
+// Block
 export function articleMetaDataBlock(editor, data) {
     editor.BlockManager.add('article-metadata', {
         label: 'all article metadata',
@@ -7,48 +63,7 @@ export function articleMetaDataBlock(editor, data) {
             attributes: {
                 'class': 'article-metadata'
             },
-            components: [
-                {
-                    tagName: 'h1',
-                    content: data.title
-                },
-                {
-                    tagName: 'a',
-                    content: `<b>DOI:</b> ${data.doi}`,
-                    attributes: {
-                        href: `https://doi.org/${data.doi}`,
-                        target: '_blank',
-                        rel: 'noopener noreferrer'
-                    }
-                },
-                {
-                    tagName: 'p',
-                    content: `
-                    <b>Authors:</b> ${data.authors.map((author) =>
-                        author.name
-                    ).join(', ')}
-                    `
-                },
-                {
-                    tagName: 'p',
-                    content: `
-                    <b>Keywords:</b> ${data.keywords.map((keyword) => keyword).join(', ')}
-                    `
-                },
-                {
-                    tagName: 'section',
-                    components: [
-                        {
-                            tagName: 'h3',
-                            content: 'abstract:'
-                        },
-                        (data.abstract.map((abst) => ({
-                            tagName: 'p',
-                            content: abst.p
-                        })))
-                    ]
-                }
-            ]
+            components: articleMetadataComponents(data)
         }
     })
 }
