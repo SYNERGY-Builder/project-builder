@@ -1,4 +1,5 @@
 import grapesjs from "grapesjs";
+import { registerPanelButtons } from "./panels/panel";
 
 export function initGrapejs() {
     let editor;
@@ -11,15 +12,7 @@ export function initGrapejs() {
         storageManager: false,
     });
 
-    // helper function 
-    const wrapper = () => {
-        return editor.DomComponents.getWrapper()
-    }
-
-    const pagesLength = () => {
-        const pages = wrapper().findType('page');
-        return pages.length + 1;
-    }
+    registerPanelButtons(editor.Panels, editor)
 
     // Component - type
     editor.DomComponents.addType('page', {
@@ -30,34 +23,16 @@ export function initGrapejs() {
                 attributes: {
                     id: 'page-1'
                 },
-                name: 'Page-1',
                 droppable: true,
                 draggable: false,
-                // copyable: false
             }
         }
     });
 
-    // Panel - button
-    editor.Panels.addButton('options', {
-        id: 'new-page',
-        label: '<i class="fa fa-file"></i>',
-        command: () => {
-            editor.addComponents({
-                type: 'page',
-                classes: ['page'],
-                attributes: {
-                    id: `page-${pagesLength()}`
-                },
-                name: `Page-${pagesLength()}`
-            });
-        }
-    })
-
     // on - function
-
     editor.on('load', () => {
-        wrapper().set({
+        const wrapper = editor.getWrapper()
+        wrapper.set({
             droppable: false,
             selectable: false,
             hoverable: false
@@ -65,7 +40,6 @@ export function initGrapejs() {
 
         editor.addComponents({
             type: 'page',
-            // removable: false
         });
 
         editor.addStyle(`
@@ -75,11 +49,12 @@ export function initGrapejs() {
             }
 
             .page {
-                width: 210mm;
-                height: 297mm;
-                max-height: 297mm;
+                width: 100%;
+                max-width: 210mm;
+                // height: 297mm;
+                min-height: 297mm;
                 background: white;
-                margin: 25px auto;
+                margin: 30px auto;
                 padding: 20mm;
                 box-sizing: border-box;
                 box-shadow: 0 0 10px rgba(0,0,0,0.1);
